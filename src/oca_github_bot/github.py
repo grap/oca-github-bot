@@ -44,6 +44,9 @@ def gh_call(func, *args, **kwargs):
                 when=e.response.headers.get("X-RateLimit-Reset"),
             ) from e
         raise
+    except Exception as e:
+        _logger.error(f"Error: func {func} failed with args {args} and kwargs {kwargs}.")
+        raise e
 
 
 def gh_date(d):
